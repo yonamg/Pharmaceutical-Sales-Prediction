@@ -4,10 +4,9 @@
 # In[1]:
 
 
+"""Log messages to a file."""
+
 import logging
-
-
-# In[2]:
 
 
 class Logger:
