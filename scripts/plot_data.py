@@ -248,6 +248,13 @@ class PlotData:
         plt.plot(model.predict(x)[:40], color='red', label='Predicted')
         plt.legend()
         plt.savefig(path)
+        
+    def heatmap(self, df, title='', annot=True): 
+        plt.figure(figsize=(12,6))
+        plt.title(title)
+        correlation = df.corr()
+        sns.heatmap(correlation,square = True, linewidths = .5, cmap = "BuPu", annot=annot)
+        return
 
 
 # In[ ]:
