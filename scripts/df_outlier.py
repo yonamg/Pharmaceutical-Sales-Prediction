@@ -1,9 +1,8 @@
 import pandas as pd
 import numpy as np
-from log import get_logger
 
-my_logger = get_logger("DfOutlier")
-my_logger.debug("Loaded successfully!")
+
+from logClass import Logger
 
 
 class DfOutlier:
@@ -15,6 +14,15 @@ class DfOutlier:
 
   def __init__(self, df: pd.DataFrame) -> None:
     self.df = df
+    """Initilize class."""
+    try:
+        self.logger = Logger("logger.log").get_app_logger()
+        self.logger.info(
+            'Successfully Instantiated outlier Class Object')
+    except Exception:
+        self.logger.exception(
+            'Failed to Instantiate outlier Class Object')
+        sys.exit(1)
 
   def count_outliers(self, Q1, Q3, IQR):
     cut_off = IQR * 1.5
