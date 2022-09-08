@@ -5,3 +5,4 @@
 2022-09-08 18:36:13,440 — Prediction — DEBUG — Exception occured while Normalizing the dataset, could not convert string to float: 'a'
 2022-09-08 18:47:39,956 — Prediction — DEBUG — Data is Normalized successfully.
 2022-09-08 19:44:14,964 — Prediction — DEBUG — Data is Normalized successfully.
+2022-09-08 19:53:06,341 — Prediction — INFO — Train Test split done successfully.
