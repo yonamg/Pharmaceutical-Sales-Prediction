@@ -17,18 +17,18 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest
-    - name: Write CML report
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Post reports as comments in GitHub PRs
-          # Random Regression
-          echo "Model Metrics" >> report.md
-          cat train/metrics.txt >> report.md
-          echo "Data Visualization" >> report.md
-          echo "Predicted vs. actual accuracy" >> report.md
-          cml-publish train/prediction.png --md >> report.md
-          echo "Feature Importance" >> report.md
-          cml-publish train/feature_importance.png --md >> report.md
+    - name: 'Write CML report'
+      env:
+         REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Post reports as comments in GitHub PRs
+        # Random Regression
+        echo "Model Metrics" >> report.md
+        cat train/metrics.txt >> report.md
+        echo "Data Visualization" >> report.md
+        echo "Predicted vs. actual accuracy" >> report.md
+        cml-publish train/prediction.png --md >> report.md
+        echo "Feature Importance" >> report.md
+        cml-publish train/feature_importance.png --md >> report.md
           
-          cml-send-comment report.md
+        cml-send-comment report.md
