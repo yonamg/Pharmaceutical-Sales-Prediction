@@ -1,0 +1,39 @@
+name: Model-Sales-Prediction
+
+on: [push,pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions: write-all 
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: train_model
+      env:
+         repo_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # your ML workflow goes here
+        pip install -r requirements.txt
+        python train/random_forest.py
+    - name: Test with pytest
+      run: |
+        python -m pytest
+    - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post reports as comments in GitHub PRs
+          # Random Regression
+          echo "Model Metrics" >> report.md
+          cat train/metrics.txt >> report.md
+          echo "Data Visualization" >> report.md
+          echo "Predicted vs. actual accuracy" >> report.md
+          cml-publish train/prediction.png --md >> report.md
+          echo "Feature Importance" >> report.md
+          cml-publish train/feature_importance.png --md >> report.md
+          
+          cml-send-comment report.md
