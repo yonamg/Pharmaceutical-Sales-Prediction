@@ -7,4 +7,21 @@
 09-07-2022 09:44:38 : INFO : logClass : Successfully Instantiated load_data Class Object
 09-07-2022 10:03:32 : INFO : logClass : Successfully Instantiated outlier Class Object
 09-07-2022 10:03:32 : INFO : logClass : Successfully Instantiated outlier Class Object
+<<<<<<< HEAD
 09-07-2022 23:12:36 : INFO : logClass : Successfully Instantiated load_data Class Object
+=======
+09-07-2022 16:18:37 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 16:18:44 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 16:18:44 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 17:28:43 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 17:28:43 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 17:28:43 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 18:54:42 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 19:34:40 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 20:13:06 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 20:13:06 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 20:15:38 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 20:15:38 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 20:15:38 : INFO : logClass : Successfully Instantiated load_data Class Object
+09-07-2022 20:46:41 : INFO : logClass : Successfully Instantiated load_data Class Object
+>>>>>>> e406775b99b6bc76091d23cc67e2759f29afb487
