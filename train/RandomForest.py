@@ -51,8 +51,8 @@ test_score = regr.score(X_test, y_test) * 100
     
     #write scores to file
 with open("train/metrics.txt", 'w') as outfile:
-    outfile.write("Training variance:", train_score)
-    outfile.write("Test variance:", test_score)
+    outfile.write(f"Validation data accuracy: {train_score}")
+    outfile.write(f"Test varianc: {test_score}")
         
  #calculate feature importance
     
