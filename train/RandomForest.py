@@ -29,7 +29,7 @@ from plot_data import PlotData
 plot = PlotData()
 
 
-data_df = pd.read_csv('data2/train_cleaned.csv', sep=',')
+data = pd.read_csv('data2/train_cleaned.csv', sep=',')
 
 # mlflow.set_experiment('Sales Prediction')
 
