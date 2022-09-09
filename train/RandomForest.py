@@ -57,7 +57,7 @@ with open("train/metrics.txt", 'w') as outfile:
  #calculate feature importance
     
 importances = regr.feature_importances_
-labels = df.columns
+labels = data.columns
 feature_df = pd.DataFrame(list(zip(labels, importances)), columns = ["feature","importance"])
 feature_df = feature_df.sort_values(by='importance', ascending=False,)
 
