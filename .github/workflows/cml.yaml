@@ -14,9 +14,7 @@ jobs:
         # your ML workflow goes here
         pip install -r requirements.txt
         python train/RandomForest.py
-    - name: Test with pytest
-      run: |
-        python -m pytest
+        
     - name: 'Write CML report'
       env:
          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
