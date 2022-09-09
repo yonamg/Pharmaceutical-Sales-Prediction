@@ -2,7 +2,7 @@ import sys
 from urllib.parse import urlparse
 # import mlflow
 from matplotlib import pyplot as plt
-from regex import P
+
 # import mlflow
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import ElasticNet, LogisticRegression
