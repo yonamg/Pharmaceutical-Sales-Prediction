@@ -30,60 +30,70 @@ plot = PlotData()
 
 
 data = pd.read_csv('data2/train_cleaned.csv', sep=',')
+data.drop(['Unnamed: 0'], axis=1, inplace=True)
+ata.set_index('Date', inplace=True)
 
-# mlflow.set_experiment('Sales Prediction')
+data.drop(['StateHoliday'], axis=1, inplace=True)
 
-if __name__ == '__main__':
-    # with mlflow.start_run():
-    warnings.filterwarnings("ignore")
-    
-    data.drop(['Unnamed: 0'], axis=1, inplace=True)
-    data.set_index('Date', inplace=True)
+data = data[data['Open'] == 1]
+data = data[data['Sales'] > 0.0]
 
-    data.drop(['StateHoliday'], axis=1, inplace=True)
-
-    data = data[data['Open'] == 1]
-    data = data[data['Sales'] > 0.0]
-
-    X = data.drop('Sales', axis=1)
-    y = data['Sales']
-    X_train, X_test, y_train, y_test = train_test_split(
+X = data.drop('Sales', axis=1)
+y = data['Sales']
+X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=123)
 
-    data_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy='mean')), ('scaler', StandardScaler())
-    ])
-
-    pipeline = Pipeline(steps=[
-        ('preprocessor', data_transformer), ('regressor',
-                                            RandomForestRegressor(n_estimators=12, random_state=42))
-    ])
-
-    rf_model = pipeline.fit(X_train, y_train)
-    val_accuracy = rf_model.score(X_test, y_test)
-    with open("train/metrics.txt", 'w') as outfile:
-        outfile.write(
-            f"Validation data accuracy: {val_accuracy}")
-    print(rf_model)
-
-    # plot the feature importance
-    plot.plot_feature_importance(range(len(rf_model.steps[1][1].feature_importances_)),
-                                X.columns, "Random Forest Regressor", 'train/feature_importance.png')
-
-    # plot the prediction
-    plot.plot_prediction(rf_model, X_test, y_test, 'train/prediction.png')  
+regr = RandomForestRegressor(max_depth=2, random_state=seed)
+regr.fit(X_train, y_train)
     
-    # mlflow.log_param('model_parameters', 'n_estimators=12')
+train_score = regr.score(X_train, y_train) * 100
+test_score = regr.score(X_test, y_test) * 100
+    
+    #write scores to file
+with open("train/metrics.txt", 'w') as outfile:
+    outfile.write("Training variance:", train_score)
+    outfile.write("Test variance:", test_score)
+        
+ #calculate feature importance
+    
+importances = regr.feature_importances_
+labels = df.columns
+feature_df = pd.DataFrame(list(zip(labels, importances)), columns = ["feature","importance"])
+feature_df = feature_df.sort_values(by='importance', ascending=False,)
 
-    # mlflow.log_param('data_url', data)
-    # mlflow.log_param('input_rows', data.shape[0])
-    # mlflow.log_param('input_cols', data.shape[1])
-    # mlflow.log_param('model_type', 'RandomForestRegressor')
-    # mlflow.log_param('val_accuracy', val_accuracy)
-    
-    # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
-    
-    # if tracking_url_type_store != "file":
-    #     mlflow.sklearn.log_model(rf_model, "model", registered_model_name="Sales Prediction")
-    # else:
-    #     mlflow.sklearn.save_model(rf_model, "model4")
+# image formatting
+axis_fs = 18 #fontsize
+title_fs = 22 #fontsize
+sns.set(style="whitegrid")
+
+ax = sns.barplot(x="importance", y="feature", data=feature_df)
+ax.set_xlabel('Importance',fontsize = axis_fs) 
+ax.set_ylabel('Feature', fontsize = axis_fs)#ylabel
+ax.set_title('Random forest\nfeature importance', fontsize = title_fs)
+
+plt.tight_layout()
+plt.savefig("feature_importance.png",dpi=120) 
+plt.close()
+
+
+##########################################
+############ PLOT RESIDUALS  #############
+##########################################
+
+y_pred = regr.predict(X_test) + np.random.normal(0,0.25,len(y_test))
+y_jitter = y_test + np.random.normal(0,0.25,len(y_test))
+res_df = pd.DataFrame(list(zip(y_jitter,y_pred)), columns = ["true","pred"])
+
+ax = sns.scatterplot(x="true", y="pred",data=res_df)
+ax.set_aspect('equal')
+ax.set_xlabel('True wine quality',fontsize = axis_fs) 
+ax.set_ylabel('Predicted wine quality', fontsize = axis_fs)#ylabel
+ax.set_title('Residuals', fontsize = title_fs)
+
+# Make it pretty- square aspect ratio
+ax.plot([1, 10], [1, 10], 'black', linewidth=1)
+plt.ylim((2.5,8.5))
+plt.xlim((2.5,8.5))
+
+plt.tight_layout()
+plt.savefig("residuals.png",dpi=120) 
