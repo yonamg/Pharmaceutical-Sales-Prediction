@@ -43,7 +43,7 @@ y = data['Sales']
 X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=123)
 
-regr = RandomForestRegressor(max_depth=2, random_state=seed)
+regr = RandomForestRegressor(max_depth=2, random_state=123)
 regr.fit(X_train, y_train)
     
 train_score = regr.score(X_train, y_train) * 100
