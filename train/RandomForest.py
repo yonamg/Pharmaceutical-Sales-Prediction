@@ -19,7 +19,7 @@ import seaborn as sns
 import sys
 import warnings
 import os
-
+import dvc.api
 
 sys.path.insert(0, os.path.abspath(os.path.join(
     os.path.dirname(__file__), '../scripts')))
