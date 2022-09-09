@@ -23,6 +23,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(
     os.path.dirname(__file__), '../scripts')))
+sys.path.append(os.path.abspath(os.path.join('../scripts')))
 from plot import Plot
 
 # Initialize Plot
