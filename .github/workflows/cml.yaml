@@ -13,7 +13,7 @@ jobs:
       run: |
         # your ML workflow goes here
         pip install -r requirements.txt
-        python train/random_forest.py
+        python train/RandomForest.py
     - name: Test with pytest
       run: |
         python -m pytest
