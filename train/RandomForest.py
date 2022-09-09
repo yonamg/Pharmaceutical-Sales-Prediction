@@ -28,20 +28,9 @@ from plot_data import PlotData
 
 # Initialize Plot
 plot = PlotData()
-#get the data
-train_path = 'data/train_cleaned.csv'
-test_path = 'data/test_cleaned.csv'
-repo = 'https://github.com/yonamg/Pharmaceutical-Sales-Prediction'
-tra_ver = '48de72c'
 
-#Load train data from dvc using the dvc.api.Dataset class
-data_url = dvc.api.get_url(
-    path=train_path,
-    repo=repo,
-    rev=tra_ver
-)
-data = pd.read_csv(data_url)
-#data = pd.read_csv('data/train_processed.csv', sep=',')
+
+data_df = pd.read_csv('data2/train_cleaned.csv', sep=',')
 
 # mlflow.set_experiment('Sales Prediction')
 
