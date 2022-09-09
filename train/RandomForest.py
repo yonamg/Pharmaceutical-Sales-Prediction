@@ -27,7 +27,7 @@ sys.path.append(os.path.abspath(os.path.join('../scripts')))
 from plot_data import PlotData
 
 # Initialize Plot
-plot = Plot()
+plot = PlotData()
 #get the data
 train_path = 'data/train_cleaned.csv'
 test_path = 'data/test_cleaned.csv'
