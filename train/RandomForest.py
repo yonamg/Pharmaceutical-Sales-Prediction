@@ -31,7 +31,7 @@ plot = PlotData()
 
 data = pd.read_csv('data2/train_cleaned.csv', sep=',')
 data.drop(['Unnamed: 0'], axis=1, inplace=True)
-ata.set_index('Date', inplace=True)
+data.set_index('Date', inplace=True)
 
 data.drop(['StateHoliday'], axis=1, inplace=True)
 
