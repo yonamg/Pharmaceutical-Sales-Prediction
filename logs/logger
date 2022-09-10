@@ -1,10 +1,2 @@
-2022-09-08 17:48:15,757 — Prediction — DEBUG — Exception occured while Normalizing the dataset, "None of [Index(['Date'], dtype='object')] are in the [columns]"
-2022-09-08 17:57:32,383 — Prediction — DEBUG — Exception occured while Normalizing the dataset, "None of [Index(['Customers'], dtype='object')] are in the [columns]"
-2022-09-08 17:59:04,829 — Prediction — DEBUG — Exception occured while Normalizing the dataset, "None of [Index(['StateHoliday'], dtype='object')] are in the [columns]"
-2022-09-08 18:09:25,135 — Prediction — DEBUG — Exception occured while Normalizing the dataset, could not convert string to float: 'a'
-2022-09-08 18:36:13,440 — Prediction — DEBUG — Exception occured while Normalizing the dataset, could not convert string to float: 'a'
-2022-09-08 18:47:39,956 — Prediction — DEBUG — Data is Normalized successfully.
-2022-09-08 19:44:14,964 — Prediction — DEBUG — Data is Normalized successfully.
-2022-09-08 19:53:06,341 — Prediction — INFO — Train Test split done successfully.
-2022-09-08 20:35:01,452 — Prediction — DEBUG — Data is Normalized successfully.
-2022-09-08 20:35:25,623 — Prediction — INFO — Train Test split done successfully.
+2022-09-10 12:02:24,933 — DfCleaner — DEBUG — Loaded successfully!
+2022-09-10 12:08:25,752 — DfCleaner — DEBUG — Loaded successfully!
