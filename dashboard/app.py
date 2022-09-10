@@ -1,19 +1,28 @@
 import user_overview_page
+import prediction_page
 import promotion_page
-# import user_experience_page
-# import user_satisifaction_page 
-
+from PIL import Image
+import imagegrid
 import streamlit as st
 
-PAGES = {
-     "Data Overview": user_overview_page,
-     "Promotion Effect on Stores": promotion_page
+st.title("Pharmacy Sales Data Analysis")
+image = Image.open('../images/phrmacy.jpg')
+st.image(image, caption="Pharmaceutical Data Analysis", use_column_width=True)
+pages = {
+     "Data Overview": imagegrid,
+     "Promotion Effect on Stores": promotion_page,
+     "Model prediction": prediction_page,
+     "Pharmacy Overview page": user_overview_page
 
-#     "User Engagement Analysis":  user_engagement_page,
-#     "User Experience Analytics": user_experience_page,
-#     "User Satisfaction Analysis": user_satisifaction_page
 }
 
-selection = st.sidebar.radio("Go to page", list(PAGES.keys()))
-page = PAGES[selection]
-page.app()
+selection = st.sidebar.radio("Go to page", list(pages.keys()))
+
+if selection=="Data Overview":
+     imagegrid.image_grid()
+if selection=="Promotion Effect on Stores":
+     promotion_page.compare_test_train()
+if selection=="Model prediction":
+     prediction_page.prdict_app()
+if selection=="Pharmacy Overview page":
+     user_overview_page.app()

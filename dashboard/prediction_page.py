@@ -1,16 +1,37 @@
+import pickle
+import dvc.api
 import pandas as pd
-import os, sys
 import streamlit as st
+from PIL import Image
 
-sys.path.append(os.path.abspath(os.path.join('../scripts')))
-from log import get_logger
-from db_script import DBScript
-db = DBScript()
 
-def make_prediction(page=None):
-    train = pd.read_sql('select * from pharmaceuticalData', db.get_engine())
-    train.reset_index(drop=True)
-    train.drop('index',axis =1, inplace=True)
-    train.set_index('Date',inplace=True)
 
-    # to be continued
+model_path = 'model/2022-09-08-21-17-38.pkl'
+repo = 'https://github.com/yonamg/Pharmaceutical-Sales-Prediction'
+model_ver = '9d7caa4'
+model_url = dvc.api.get_url(
+    path=model_path,
+    repo=repo,
+    rev=model_ver
+)
+
+
+def load_model():
+    pickle_in = open(model_url, 'rb')
+    random_fore_model = pickle.load(pickle_in)
+    return random_fore_model
+
+
+def prdict_app():
+    st.title("Prdict Sales")
+
+    sales_score = st.slider("Sales", min_value=0.0,
+                          max_value=2.0, step=0.1)
+    salesD_score = st.slider("Sales Assortment", min_value=0.0,
+                          max_value=2.0, step=0.1)
+
+    if st.button("Predict"):
+        model = load_model()
+        result = model.predict([[sales_score, salesD_score]])
+
+        st.success(f"The sales prediction is {result[0][0]}")

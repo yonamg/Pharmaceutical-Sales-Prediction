@@ -1,16 +1,18 @@
 import sys
 import os
 import sys
+from turtle import title
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib import testing
 import numpy as np
 import pandas as pd
 import streamlit as st
+from PIL import Image
 
 sys.path.append(os.path.abspath(os.path.join('../scripts'))) 
-from plot_data import PlotData
 
+image = Image.open('../images/featureImportance.png')
 def compare_test_train(train_data, test_data, feature, title):
     fig, ax = plt.subplots(1, 2, sharex=True, figsize=(12, 4))
     ax[0].set_title("Train " + title)
@@ -18,7 +20,7 @@ def compare_test_train(train_data, test_data, feature, title):
     ax[1].set_title("Test " + title)
     sns.countplot(x=feature, data=test_data, ax=ax[1])
     fig.subplots_adjust(wspace=0.3)
-    # fig.show()
+    fig.show()
 
 
 # def storeDataLoad():
@@ -27,12 +29,12 @@ def compare_test_train(train_data, test_data, feature, title):
 
 
 def trainingDataLoad():
-    df = pd.read_csv("../data/cleaned_train.csv")
+    df = pd.read_csv("../data/train_cleaned.csv")
     return df
 
 
 def testingDataLoad():
-    df = pd.read_csv("../data/cleaned_test.csv")
+    df = pd.read_csv("../data/test_cleaned.csv")
     return df
 
 
@@ -63,3 +65,6 @@ def app():
     sns.factorplot(data = df, x ="Month", y = "Sales",
                hue = 'Promo',
               sharex=False)
+    title='Feature Importance'
+
+    compare_test_train(train_data, test_data, image, title)
