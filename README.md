@@ -31,7 +31,7 @@ This project aims to forecast sales in all Pharmaceutical stores across several 
     Free API, comming soon
     Clone the repo
 
-git clone https://github.com/bkget/Pharmaceutical-Sales-Prediction
+git clone https://github.com/yonamg/Pharmaceutical-Sales-Prediction
 
 
     
