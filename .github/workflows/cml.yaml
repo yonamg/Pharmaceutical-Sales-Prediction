@@ -4,9 +4,9 @@ jobs:
   run:
     runs-on: ubuntu-latest
     permissions: write-all 
-
     steps:
     - uses: actions/checkout@v3
+    - uses: iterative/setup-cml@v1
     - name: train_model
       env:
          repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,9 +25,8 @@ jobs:
         cat train/metrics.txt >> report.md
         echo "Data Visualization" >> report.md
         echo "Predicted vs. actual accuracy" >> report.md
-        cml-publish train/prediction.png --md >> report.md
         echo "Feature Importance" >> report.md
-        cml-publish train/feature_importance.png --md >> report.md
+        cml-publish images/featureImportance.png --md >> report.md
           
         cml-send-comment report.md
         
