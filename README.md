@@ -16,14 +16,14 @@ This project aims to forecast sales in all Pharmaceutical stores across several 
     
 # Project_Content
 
-#The project covers the following:
+# The project covers the following:
 
     Data preprocessing
     EDA( Exploratory Data Analysis) on the data
     Sklearn Pipleine
     Machine Learning modelning (Randonm Forest)
     Deep Learning (LSTM) modeling
-#Install required packages
+# Install required packages
    pip install -r requirements.txt
    
  # Installation
